@@ -40,7 +40,7 @@ const updatePost = async (id, postObj) => {
 const deletePost = async (id) => {
   const post = await Posts.destroy({
     where: {
-      id,
+      id: id,
     },
   });
   return post;
