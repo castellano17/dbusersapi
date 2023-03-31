@@ -1,20 +1,5 @@
 const Users = require("../models/users.model");
 
-const userDb = [
-  {
-    id: 1,
-    name: "Sahid",
-    email: "sahid.kick@academlo.com",
-    password: "root",
-  },
-  {
-    id: 2,
-    name: "Alejandro Aguilar",
-    email: "alejandro@gmail.com",
-    password: "root",
-  },
-];
-
 const findAllUsers = async () => {
   const users = await Users.findAll();
   return users;
@@ -39,8 +24,36 @@ const createUser = async (userObj) => {
   return newUser;
 };
 
+const updateUser = async (id, userObj) => {
+  const userSelected = await Users.findOne({
+    where: {
+      id: id,
+    },
+  });
+  if (!userSelected) return null;
+  const modifiedUser = await userSelected.update(userObj);
+
+  // const user = await Users.update(userObj, {
+  //   where: {
+  //     id: id,
+  //   },
+  // });
+  return modifiedUser;
+};
+
+const deleteUser = async (id) => {
+  const user = await Users.destroy({
+    where: {
+      id: id,
+    },
+  });
+  return user;
+};
+
 module.exports = {
   findAllUsers,
   findUserById,
   createUser,
+  updateUser,
+  deleteUser,
 };
