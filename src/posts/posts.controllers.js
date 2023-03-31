@@ -19,7 +19,7 @@ const createNewPost = async (postObj) => {
     title: postObj.title,
     content: postObj.content,
     category: postObj.category,
-    UserName: postObj.UserName,
+    userName: postObj.userName,
   });
   return newPost;
 };
