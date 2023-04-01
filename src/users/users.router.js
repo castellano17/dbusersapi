@@ -8,17 +8,14 @@ const userServices = require("./users.services");
 // router.get("/users", userServices.getAllUsers);
 // router.post("/users", userServices.postNewUser);
 
-router
-  .route("/users")
-  .get(userServices.getAllUsers)
-  .post(userServices.postNewUser);
+router.route("/").get(userServices.getAllUsers).post(userServices.postNewUser);
 
 // router.get("/users/:id", userServices.getUserById);
 // router.patch("/users/:id", userServices.patchUser);
 // router.delete("/users/:id", userServices.deleteUser);
 
 router
-  .route("/users/:id")
+  .route("/:id")
   .get(userServices.getUserById)
   .patch(userServices.patchUser)
   .delete(userServices.deleteUser);

@@ -9,6 +9,8 @@ userName: string
 const { DataTypes } = require("sequelize");
 const db = require("../utils/database");
 
+const Users = require("./users.model");
+
 const Posts = db.define("posts", {
   id: {
     type: DataTypes.INTEGER,
@@ -33,8 +35,13 @@ const Posts = db.define("posts", {
       len: [1, 255],
     },
   },
-  userName: {
-    type: DataTypes.STRING,
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      key: "id",
+      model: Users,
+    },
   },
 });
 
